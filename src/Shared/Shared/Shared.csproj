@@ -25,15 +25,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\SharedMessages.resx" />
-    <EmbeddedResource Remove="Resources\SharedMessages.pt-BR.resx" />
-    <EmbeddedResource Remove="Resources\SharedMessages.es.resx" />
+    <Compile Update="Resources\SharedMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\SharedMessages.resx" />
-    <EmbeddedResource Include="Resources\SharedMessages.pt-BR.resx" />
-    <EmbeddedResource Include="Resources\SharedMessages.es.resx" />
+    <EmbeddedResource Update="Resources\SharedMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedMessages.pt-BR.resx" />
+    <EmbeddedResource Update="Resources\SharedMessages.es.resx" />
   </ItemGroup>
 
 </Project>

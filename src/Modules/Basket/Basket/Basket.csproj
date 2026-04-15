@@ -12,15 +12,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\BasketMessages.resx" />
-    <EmbeddedResource Remove="Resources\BasketMessages.pt-BR.resx" />
-    <EmbeddedResource Remove="Resources\BasketMessages.es.resx" />
+    <Compile Update="Resources\BasketMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BasketMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\BasketMessages.resx" />
-    <EmbeddedResource Include="Resources\BasketMessages.pt-BR.resx" />
-    <EmbeddedResource Include="Resources\BasketMessages.es.resx" />
+    <EmbeddedResource Update="Resources\BasketMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BasketMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\BasketMessages.pt-BR.resx" />
+    <EmbeddedResource Update="Resources\BasketMessages.es.resx" />
   </ItemGroup>
 
 </Project>

@@ -12,15 +12,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\OrdersMessages.resx" />
-    <EmbeddedResource Remove="Resources\OrdersMessages.pt-BR.resx" />
-    <EmbeddedResource Remove="Resources\OrdersMessages.es.resx" />
+    <Compile Update="Resources\OrdersMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OrdersMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\OrdersMessages.resx" />
-    <EmbeddedResource Include="Resources\OrdersMessages.pt-BR.resx" />
-    <EmbeddedResource Include="Resources\OrdersMessages.es.resx" />
+    <EmbeddedResource Update="Resources\OrdersMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrdersMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\OrdersMessages.pt-BR.resx" />
+    <EmbeddedResource Update="Resources\OrdersMessages.es.resx" />
   </ItemGroup>
 
 </Project>
