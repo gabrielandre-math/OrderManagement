@@ -1,0 +1,49 @@
+services:
+  orderdb:
+    image: postgres:16-alpine
+    container_name: orderdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: OrderManagementDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - orderdb_data:/var/lib/postgresql/data
+
+  messagebroker:
+    image: rabbitmq:3-management-alpine
+    container_name: messagebroker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  api:
+    build:
+      context: .
+      dockerfile: src/Bootstrapper/Api/Dockerfile
+    container_name: ordermanagement-api
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultSchema: "Host=orderdb;Port=5432;Database=OrderManagementDb;Username=postgres;Password=postgres;Include Error Detail=true"
+      RabbitMQ__Host: "messagebroker"
+      MessageBroker__UserName: "guest"
+      MessageBroker__Password: "guest"
+    ports:
+      - "5000:8080"
+    depends_on:
+      - orderdb
+      - messagebroker
+
+volumes:
+  orderdb_data:
+  rabbitmq_data:

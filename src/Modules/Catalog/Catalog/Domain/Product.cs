@@ -1,6 +1,6 @@
 ﻿using Shared.DDD;
 
-namespace Catalog.Domain;
+namespace Catalog.Products;
 
 public class Product : Entity<Guid>
 {

@@ -1,5 +1,10 @@
 using System.Globalization;
+using Carter;
+using Catalog;
+using Catalog.Data;
+using Shared.Data.Interceptors;
 using Shared.Exceptions.Handler;
+using Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +36,22 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.ApplyCurrentCultureToResponseHeaders = true;
 });
 
+// CQRS + Validation + Loggin Pipelines
+var catalogAssembly = typeof(CatalogModule).Assembly;
+builder.Services.AddMediatRWithAssemblies(catalogAssembly);
+
+// Carter Endpoints
+builder.Services.AddCarterWithAssemblies(catalogAssembly);
+
+// EF Core interceptors (resolved via DI)
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<AuditableEntityInterceptor>();
+builder.Services.AddScoped<DispatchDomainEventsInterceptor>();
+
+// Modules
+builder.Services.AddCatalogModule(builder.Configuration);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,8 +68,13 @@ app.UseExceptionHandler();
 
 // i18n: Enable request localization middleware (must be before endpoints)
 app.UseRequestLocalization();
-
 app.UseHttpsRedirection();
+
+// Carter: map all module endpoints
+app.MapCarter();
+
+// Auto-migrate + seed on startup (optional, can be removed in production)
+await app.UseMigrationAsync<CatalogDbContext>();
 
 app.Run();
 
