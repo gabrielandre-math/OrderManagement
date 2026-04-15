@@ -1,0 +1,285 @@
+@startuml Core — Class Diagram (Final State)
+
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+skinparam defaultFontSize 11
+
+title Core — Class Diagram (Final State)
+
+' ═══════════════════════════════════════════════════════
+'  LAYER 1 — Shared.Contracts (zero dependencies)
+' ═══════════════════════════════════════════════════════
+
+package "Shared.Contracts.Results" #FEFCE8 {
+    enum ErrorType {
+        None = 0
+        NotFound = 404
+        Validation = 400
+        BadRequest = 400
+        Conflict = 409
+        Forbidden = 403
+        Unexpected = 500
+    }
+
+    class Error <<sealed record>> {
+        + Code : string
+        + Message : string
+        + Type : ErrorType
+        + {static} NotFound(code, message) : Error
+        + {static} Validation(code, message) : Error
+        + {static} BadRequest(code, message) : Error
+        + {static} Conflict(code, message) : Error
+        + {static} Forbidden(code, message) : Error
+        + {static} Unexpected(code, message) : Error
+        - {static} None : Error
+    }
+
+    class Result {
+        + IsSuccess : bool
+        + IsFailure : bool
+        + Error : Error
+        + {static} Success() : Result
+        + {static} Failure(error) : Result
+        + {static} Success<T>(value) : Result<T>
+        + {static} Failure<T>(error) : Result<T>
+    }
+
+    class "Result<T>" as ResultT {
+        + Value : T
+        + {static} implicit operator(T) : Result<T>
+    }
+
+    ResultT --|> Result
+    Error *-- ErrorType
+    Result o-- Error : "Error (on failure)"
+}
+
+package "Shared.Contracts.CQRS" #FEFCE8 {
+    interface ICommand
+    interface "ICommand<TResponse>" as ICommandTR
+    interface ICommandHandler
+    interface "ICommandHandler<TCommand,TResponse>" as ICommandHandlerTR
+    interface "IQuery<T>" as IQueryT
+    interface "IQueryHandler<TQuery,TResponse>" as IQueryHandlerTR
+
+    ICommand --|> ICommandTR : "default TResponse=Result"
+    ICommandHandler --|> ICommandHandlerTR : "default TResponse=Result"
+}
+
+' ═══════════════════════════════════════════════════════
+'  LAYER 2 — Shared (depends on Shared.Contracts)
+' ═══════════════════════════════════════════════════════
+
+package "Shared.DDD" #E8F5E9 {
+    interface IEntity {
+        + CreatedAt : DateTime?
+        + CreatedBy : string?
+        + LastModified : DateTime?
+        + LastModifiedBy : string?
+    }
+
+    interface "IEntity<T>" as IEntityT {
+        + Id : T
+    }
+
+    interface IDomainEvent {
+        + EventId : Guid
+        + OccuredOn : DateTime
+        + EventType : string
+    }
+
+    interface IAggregate {
+        + DomainEvents : IReadOnlyList<IDomainEvent>
+        + ClearDomainEvents() : IDomainEvent[]
+    }
+
+    interface "IAggregate<T>" as IAggregateT
+
+    abstract class "Entity<T>" as EntityT {
+        + Id : T
+        + CreatedAt : DateTime?
+        + CreatedBy : string?
+        + LastModified : DateTime?
+        + LastModifiedBy : string?
+    }
+
+    abstract class "Aggregate<TId>" as AggregateTId {
+        - _domainEvents : List<IDomainEvent>
+        + DomainEvents : IReadOnlyList<IDomainEvent>
+        + AddDomainEvent(event) : void
+        + ClearDomainEvents() : IDomainEvent[]
+    }
+
+    IEntityT --|> IEntity
+    IAggregate --|> IEntity
+    IAggregateT --|> IAggregate
+    IAggregateT --|> IEntityT
+    EntityT ..|> IEntityT
+    AggregateTId --|> EntityT
+    AggregateTId ..|> IAggregateT
+    AggregateTId *-- IDomainEvent : "_domainEvents 0..*"
+}
+
+package "Shared.Data.Interceptors" #E8F5E9 {
+    class AuditableEntityInterceptor <<internal>> {
+        - httpContextAccessor : IHttpContextAccessor
+        + SavingChanges() : InterceptionResult
+        + SavingChangesAsync() : ValueTask
+        - UpdateEntities(context) : void
+    }
+
+    class DispatchDomainEventsInterceptor {
+        - mediator : IMediator
+        + SavingChanges() : InterceptionResult
+        + SavingChangesAsync() : ValueTask
+        - DispatchDomainEvents(context) : Task
+    }
+
+    class Extensions <<static>> {
+        + {static} HasChangedOwnedEntities(entry) : bool
+    }
+}
+
+package "Shared.Data.Seed" #E8F5E9 {
+    interface IDataSeeder {
+        + SeedAllAsync() : Task
+    }
+}
+
+package "Shared.Behaviors" #E8F5E9 {
+    class "ValidationBehavior<TRequest,TResponse>" as ValidationBehavior {
+        - validators : IEnumerable<IValidator>
+        + Handle(request, next, ct) : Task<TResponse>
+    }
+
+    class "LoggingBehavior<TRequest,TResponse>" as LoggingBehavior {
+        - logger : ILogger
+        + Handle(request, next, ct) : Task<TResponse>
+    }
+}
+
+package "Shared.Exceptions.Handler" #E8F5E9 {
+    class CustomExceptionHandler {
+        - logger : ILogger
+        - localizer : IStringLocalizer<SharedMessages>
+        + TryHandleAsync(context, exception, ct) : ValueTask<bool>
+    }
+}
+
+package "Shared.Resources" #E8F5E9 {
+    class SharedMessages <<marker>> {
+    }
+    note bottom of SharedMessages
+        Used by IStringLocalizer<SharedMessages>
+        to locate .resx files (en-US, pt-BR, es)
+    end note
+}
+
+package "Shared.Extensions" #E8F5E9 {
+    class ResultExtensions <<static>> {
+        + {static} ToProblemResult<T>(result) : IResult
+        + {static} ToProblemResult(result) : IResult
+        + {static} ToCreatedResult<T>(result, uri) : IResult
+        - {static} ToProblemDetails(error) : IResult
+    }
+
+    class CarterExtensions <<static>> {
+        + {static} AddCarterWithAssemblies(services, assemblies) : IServiceCollection
+    }
+
+    class MediatRExtensions <<static>> {
+        + {static} AddMediatRWithAssemblies(services, assemblies) : IServiceCollection
+    }
+}
+
+package "Shared.Pagination" #E8F5E9 {
+    class "PaginatedResult<TEntity>" as PaginatedResult {
+        + PageIndex : int
+        + PageSize : int
+        + Count : long
+        + Data : IEnumerable<TEntity>
+    }
+}
+
+' ═══════════════════════════════════════════════════════
+'  LAYER 3 — Shared.Messaging
+' ═══════════════════════════════════════════════════════
+
+package "Shared.Messaging" #E3F2FD {
+    class IntegrationEvent <<record>> {
+        + EventId : Guid
+        + OccuredOn : DateTime
+        + EventType : string
+    }
+
+    class BasketCheckoutIntegrationEvent <<record>>
+    class ProductPriceChangedIntegrationEvent <<record>>
+
+    class MassTransitExtensions <<static>> {
+        + {static} AddMassTransitWithAssemblies(services, config, assemblies) : IServiceCollection
+    }
+
+    BasketCheckoutIntegrationEvent --|> IntegrationEvent
+    ProductPriceChangedIntegrationEvent --|> IntegrationEvent
+}
+
+' ═══════════════════════════════════════════════════════
+'  EXTERNAL FRAMEWORKS (not our code)
+' ═══════════════════════════════════════════════════════
+
+package "External" #F5F5F5 {
+    interface INotification <<MediatR>>
+    interface IRequest <<MediatR>>
+    interface IRequestHandler <<MediatR>>
+    interface IPipelineBehavior <<MediatR>>
+    interface IMediator <<MediatR>>
+    abstract class SaveChangesInterceptor <<EF Core>>
+    interface IValidator <<FluentValidation>>
+    interface IExceptionHandler <<ASP.NET Core>>
+    interface IHttpContextAccessor <<ASP.NET Core>>
+    interface "IStringLocalizer<T>" as IStringLocalizerT <<Localization>>
+}
+
+' ═══════════════════════════════════════════════════════
+'  KEY RELATIONSHIPS
+' ═══════════════════════════════════════════════════════
+
+' Result Pattern → HTTP
+ResultExtensions ..> Result : "converts"
+ResultExtensions ..> ResultT : "converts"
+ResultExtensions ..> Error : "maps to ProblemDetails"
+
+' CQRS → MediatR
+IDomainEvent ..|> INotification
+ICommandTR ..|> IRequest
+ICommandHandlerTR ..|> IRequestHandler
+IQueryT ..|> IRequest
+IQueryHandlerTR ..|> IRequestHandler
+
+' Behaviors → Pipeline
+ValidationBehavior ..|> IPipelineBehavior
+ValidationBehavior ..> ICommandTR : "constrains TRequest"
+ValidationBehavior ..> IValidator : "validates with"
+ValidationBehavior ..> Error : "Error.Validation"
+ValidationBehavior ..> Result : "Result.Failure"
+LoggingBehavior ..|> IPipelineBehavior
+
+' Interceptors → EF Core + DDD
+AuditableEntityInterceptor --|> SaveChangesInterceptor
+AuditableEntityInterceptor ..> IEntity : "sets audit fields"
+AuditableEntityInterceptor ..> IHttpContextAccessor : "gets current user"
+DispatchDomainEventsInterceptor --|> SaveChangesInterceptor
+DispatchDomainEventsInterceptor ..> IAggregate : "collects events"
+DispatchDomainEventsInterceptor ..> IMediator : "publishes events"
+
+' Exception Handler → i18n
+CustomExceptionHandler ..|> IExceptionHandler
+CustomExceptionHandler ..> IStringLocalizerT : "i18n messages"
+CustomExceptionHandler ..> SharedMessages : "resource locator"
+
+' Extensions register behaviors
+MediatRExtensions ..> ValidationBehavior : "registers"
+MediatRExtensions ..> LoggingBehavior : "registers"
+
+@enduml
