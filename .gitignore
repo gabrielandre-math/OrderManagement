@@ -1,0 +1,35 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+*.csproj.user
+launchSettings.json
+
+## NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Rider
+.idea/
+
+## Test Results
+TestResults/

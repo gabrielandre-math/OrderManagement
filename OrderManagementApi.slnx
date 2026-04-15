@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/Bootstrapper/">
+    <Project Path="src/Bootstrapper/Api/Api.csproj" />
+  </Folder>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Basket/">
+    <Project Path="src/Modules/Basket/Basket/Basket.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Catalog/">
+    <Project Path="src/Modules/Catalog/Catalog/Catalog.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Orders/">
+    <Project Path="src/Modules/Orders/Orders/Orders.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="src/Shared/Shared.Contracts/Shared.Contracts.csproj" />
+    <Project Path="src/Shared/Shared.Messaging/Shared.Messaging.csproj" />
+    <Project Path="src/Shared/Shared/Shared.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/OrderManagementApi.Tests/OrderManagementApi.Tests.csproj" />
+  </Folder>
+</Solution>

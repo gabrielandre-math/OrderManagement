@@ -1,0 +1,338 @@
+---
+title: Shared Module — Class Diagram
+---
+classDiagram
+    direction TB
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Contracts.CQRS
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Contracts_CQRS {
+        class ICommand {
+            <<interface>>
+        }
+        class ICommand_TResponse {
+            <<interface>>
+        }
+        class ICommandHandler_TCommand {
+            <<interface>>
+        }
+        class ICommandHandler_TCommand_TResponse {
+            <<interface>>
+        }
+        class IQuery_T {
+            <<interface>>
+        }
+        class IQueryHandler_TQuery_TResponse {
+            <<interface>>
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.DDD
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_DDD {
+        class IEntity {
+            <<interface>>
+            +DateTime CreatedAt
+            +string CreatedBy
+            +DateTime LastModified
+            +string LastModifiedBy
+        }
+        class IEntity_T {
+            <<interface>>
+            +T Id
+        }
+        class IDomainEvent {
+            <<interface>>
+            +Guid EventId
+            +DateTime OccuredOn
+            +string EventType
+        }
+        class IAggregate {
+            <<interface>>
+            +IReadOnlyList DomainEvents
+            +ClearDomainEvents() IDomainEvent[]
+        }
+        class IAggregate_T {
+            <<interface>>
+        }
+        class Entity_T {
+            <<abstract>>
+            +T Id
+            +DateTime CreatedAt
+            +string CreatedBy
+            +DateTime LastModified
+            +string LastModifiedBy
+        }
+        class Aggregate_TId {
+            <<abstract>>
+            -List _domainEvents
+            +IReadOnlyList DomainEvents
+            +AddDomainEvent(IDomainEvent) void
+            +ClearDomainEvents() IDomainEvent[]
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Data.Interceptors
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Data_Interceptors {
+        class AuditableEntityInterceptor {
+            <<internal>>
+            +SavingChanges(eventData, result) InterceptionResult
+            +SavingChangesAsync(eventData, result, ct) ValueTask
+            -UpdateEntities(DbContext context) void
+        }
+        class DispatchDomainEventsInterceptor {
+            -IMediator mediator
+            +SavingChanges(eventData, result) InterceptionResult
+            +SavingChangesAsync(eventData, result, ct) ValueTask
+            -DispatchDomainEvents(DbContext context) Task
+        }
+        class Extensions {
+            <<static>>
+            +HasChangedOwnedEntities(EntityEntry entry)$ bool
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Data.Seed
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Data_Seed {
+        class IDataSeeder {
+            <<interface>>
+            +SeedAllAsync() Task
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Exceptions
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Exceptions {
+        class BadRequestException {
+            +string Details
+            +BadRequestException(string message)
+            +BadRequestException(string message, string details)
+        }
+        class InternalServerException {
+            +string Details
+            +InternalServerException(string message)
+            +InternalServerException(string message, string details)
+        }
+        class NotFoundException {
+            +NotFoundException(string message)
+            +NotFoundException(string name, object key)
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Exceptions.Handler
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Exceptions_Handler {
+        class CustomExceptionHandler {
+            -ILogger logger
+            +TryHandleAsync(HttpContext, Exception, CancellationToken) ValueTask
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Behaviors
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Behaviors {
+        class ValidationBehavior_TRequest_TResponse {
+            -IEnumerable validators
+            +Handle(TRequest, RequestHandlerDelegate, CancellationToken) Task
+        }
+        class LoggingBehavior_TRequest_TResponse {
+            -ILogger logger
+            +Handle(TRequest, RequestHandlerDelegate, CancellationToken) Task
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Extensions
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Extensions {
+        class CarterExtensions {
+            <<static>>
+            +AddCarterWithAssemblies(IServiceCollection, Assembly[])$ IServiceCollection
+        }
+        class MediatRExtensions {
+            <<static>>
+            +AddMediatRWithAssemblies(IServiceCollection, Assembly[])$ IServiceCollection
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Pagination
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Pagination {
+        class PaginatedResult_TEntity {
+            +int PageIndex
+            +int PageSize
+            +long Count
+            +IEnumerable Data
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Messaging.Events
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Messaging_Events {
+        class IntegrationEvent {
+            <<record>>
+            +Guid EventId
+            +DateTime OccuredOn
+            +string EventType
+        }
+        class BasketCheckoutIntegrationEvent {
+            <<record>>
+            +string UserName
+            +Guid CustomerId
+            +decimal TotalPrice
+            +string FirstName
+            +string LastName
+            +string EmailAddress
+            +string AddressLine
+            +string Country
+            +string State
+            +string ZipCode
+            +string CardName
+            +string CardNumber
+            +string Expiration
+            +string Cvv
+            +int PaymentMethod
+        }
+        class ProductPriceChangedIntegrationEvent {
+            <<record>>
+            +Guid ProductId
+            +string Name
+            +List Category
+            +string Description
+            +string ImageFile
+            +decimal Price
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  Shared.Messaging.Extensions
+    %% ═══════════════════════════════════════════════════
+    namespace Shared_Messaging_Extensions {
+        class MassTransitExtensions {
+            <<static>>
+            +AddMassTransitWithAssemblies(IServiceCollection, IConfiguration, Assembly[])$ IServiceCollection
+        }
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  External Framework Types
+    %% ═══════════════════════════════════════════════════
+    namespace External_MediatR {
+        class INotification {
+            <<interface>>
+        }
+        class IRequest {
+            <<interface>>
+        }
+        class IRequestHandler {
+            <<interface>>
+        }
+        class IPipelineBehavior {
+            <<interface>>
+        }
+        class IMediator {
+            <<interface>>
+        }
+    }
+    namespace External_EFCore {
+        class SaveChangesInterceptor {
+            <<abstract>>
+        }
+    }
+    namespace External_FluentValidation {
+        class IValidator {
+            <<interface>>
+        }
+    }
+    namespace External_ASPNETCore {
+        class IExceptionHandler {
+            <<interface>>
+        }
+    }
+    namespace External_System {
+        class Exception
+    }
+
+    %% ═══════════════════════════════════════════════════
+    %%  DDD Inheritance / Realization
+    %% ═══════════════════════════════════════════════════
+    IEntity_T --|> IEntity : extends
+    IAggregate --|> IEntity : extends
+    IAggregate_T --|> IAggregate : extends
+    IAggregate_T --|> IEntity_T : extends
+    Entity_T ..|> IEntity_T : implements
+    Aggregate_TId --|> Entity_T : extends
+    Aggregate_TId ..|> IAggregate_T : implements
+
+    %% ═══════════════════════════════════════════════════
+    %%  DDD Composition / Aggregation
+    %% ═══════════════════════════════════════════════════
+    Aggregate_TId *-- IDomainEvent : _domainEvents 0..*
+    IAggregate o-- IDomainEvent : DomainEvents 0..*
+
+    %% ═══════════════════════════════════════════════════
+    %%  MediatR Realization
+    %% ═══════════════════════════════════════════════════
+    IDomainEvent ..|> INotification : MediatR
+    ICommand --|> ICommand_TResponse : extends Unit
+    ICommand_TResponse ..|> IRequest : MediatR
+    ICommandHandler_TCommand --|> ICommandHandler_TCommand_TResponse : extends Unit
+    ICommandHandler_TCommand_TResponse ..|> IRequestHandler : MediatR
+    IQuery_T ..|> IRequest : MediatR
+    IQueryHandler_TQuery_TResponse ..|> IRequestHandler : MediatR
+
+    %% ═══════════════════════════════════════════════════
+    %%  Behaviors
+    %% ═══════════════════════════════════════════════════
+    ValidationBehavior_TRequest_TResponse ..|> IPipelineBehavior : MediatR
+    LoggingBehavior_TRequest_TResponse ..|> IPipelineBehavior : MediatR
+    ValidationBehavior_TRequest_TResponse ..> ICommand_TResponse : bind TRequest
+    ValidationBehavior_TRequest_TResponse ..> IValidator : use
+    LoggingBehavior_TRequest_TResponse ..> IMediator : use
+
+    %% ═══════════════════════════════════════════════════
+    %%  Interceptors to DDD
+    %% ═══════════════════════════════════════════════════
+    AuditableEntityInterceptor --|> SaveChangesInterceptor : EF Core
+    AuditableEntityInterceptor ..> IEntity : tracks changes
+    DispatchDomainEventsInterceptor --|> SaveChangesInterceptor : EF Core
+    DispatchDomainEventsInterceptor ..> IAggregate : dispatches events
+    DispatchDomainEventsInterceptor ..> IMediator : use
+
+    %% ═══════════════════════════════════════════════════
+    %%  Exceptions
+    %% ═══════════════════════════════════════════════════
+    BadRequestException --|> Exception : extends
+    InternalServerException --|> Exception : extends
+    NotFoundException --|> Exception : extends
+
+    %% ═══════════════════════════════════════════════════
+    %%  Exception Handler
+    %% ═══════════════════════════════════════════════════
+    CustomExceptionHandler ..|> IExceptionHandler : ASP.NET Core
+    CustomExceptionHandler ..> BadRequestException : handles
+    CustomExceptionHandler ..> InternalServerException : handles
+    CustomExceptionHandler ..> NotFoundException : handles
+
+    %% ═══════════════════════════════════════════════════
+    %%  Extensions to Behaviors
+    %% ═══════════════════════════════════════════════════
+    MediatRExtensions ..> ValidationBehavior_TRequest_TResponse : register
+    MediatRExtensions ..> LoggingBehavior_TRequest_TResponse : register
+
+    %% ═══════════════════════════════════════════════════
+    %%  Messaging
+    %% ═══════════════════════════════════════════════════
+    BasketCheckoutIntegrationEvent --|> IntegrationEvent : extends
+    ProductPriceChangedIntegrationEvent --|> IntegrationEvent : extends
