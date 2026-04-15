@@ -15,4 +15,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Products\" />
+  </ItemGroup>
+
 </Project>
