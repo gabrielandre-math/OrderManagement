@@ -11,4 +11,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\OrdersMessages.resx" />
+    <EmbeddedResource Update="Resources\OrdersMessages.pt-BR.resx" />
+    <EmbeddedResource Update="Resources\OrdersMessages.es.resx" />
+  </ItemGroup>
+
 </Project>

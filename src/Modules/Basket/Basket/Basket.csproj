@@ -11,4 +11,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\BasketMessages.resx" />
+    <EmbeddedResource Update="Resources\BasketMessages.pt-BR.resx" />
+    <EmbeddedResource Update="Resources\BasketMessages.es.resx" />
+  </ItemGroup>
+
 </Project>

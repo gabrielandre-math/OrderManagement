@@ -24,4 +24,10 @@
     <ProjectReference Include="..\Shared.Contracts\Shared.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\SharedMessages.resx" />
+    <EmbeddedResource Update="Resources\SharedMessages.pt-BR.resx" />
+    <EmbeddedResource Update="Resources\SharedMessages.es.resx" />
+  </ItemGroup>
+
 </Project>
