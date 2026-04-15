@@ -12,9 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\OrdersMessages.resx" />
-    <EmbeddedResource Update="Resources\OrdersMessages.pt-BR.resx" />
-    <EmbeddedResource Update="Resources\OrdersMessages.es.resx" />
+    <EmbeddedResource Remove="Resources\OrdersMessages.resx" />
+    <EmbeddedResource Remove="Resources\OrdersMessages.pt-BR.resx" />
+    <EmbeddedResource Remove="Resources\OrdersMessages.es.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\OrdersMessages.resx" />
+    <EmbeddedResource Include="Resources\OrdersMessages.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\OrdersMessages.es.resx" />
   </ItemGroup>
 
 </Project>

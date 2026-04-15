@@ -25,9 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\SharedMessages.resx" />
-    <EmbeddedResource Update="Resources\SharedMessages.pt-BR.resx" />
-    <EmbeddedResource Update="Resources\SharedMessages.es.resx" />
+    <EmbeddedResource Remove="Resources\SharedMessages.resx" />
+    <EmbeddedResource Remove="Resources\SharedMessages.pt-BR.resx" />
+    <EmbeddedResource Remove="Resources\SharedMessages.es.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SharedMessages.resx" />
+    <EmbeddedResource Include="Resources\SharedMessages.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\SharedMessages.es.resx" />
   </ItemGroup>
 
 </Project>

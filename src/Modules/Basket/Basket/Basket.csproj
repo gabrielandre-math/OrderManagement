@@ -12,9 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\BasketMessages.resx" />
-    <EmbeddedResource Update="Resources\BasketMessages.pt-BR.resx" />
-    <EmbeddedResource Update="Resources\BasketMessages.es.resx" />
+    <EmbeddedResource Remove="Resources\BasketMessages.resx" />
+    <EmbeddedResource Remove="Resources\BasketMessages.pt-BR.resx" />
+    <EmbeddedResource Remove="Resources\BasketMessages.es.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\BasketMessages.resx" />
+    <EmbeddedResource Include="Resources\BasketMessages.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\BasketMessages.es.resx" />
   </ItemGroup>
 
 </Project>
