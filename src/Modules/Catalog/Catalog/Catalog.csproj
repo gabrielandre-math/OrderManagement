@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\..\Shared\Shared.Contracts\Shared.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Shared.Messaging\Shared.Messaging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Messaging\" />
-    <Folder Include="Products\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +30,51 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\CatalogMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CatalogMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\CatalogMessages.pt-BR.resx" />
     <EmbeddedResource Update="Resources\CatalogMessages.es.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.fr.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ja.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.zh-CN.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.zh-TW.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ko.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.de.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.it.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ru.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ar.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.hi.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.pl.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.nl.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.sv.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.da.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.no.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.fi.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.cs.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.hu.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ro.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.bg.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.el.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.tr.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.th.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.vi.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.id.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ms.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.uk.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.sk.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.hr.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.sr.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.sl.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.lt.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.lv.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.et.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.he.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.fa.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.bn.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.sw.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.ca.resx" />
+    <EmbeddedResource Update="Resources\CatalogMessages.eu.resx" />
   </ItemGroup>
 
 </Project>

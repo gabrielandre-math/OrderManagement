@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -40,27 +40,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Product with ID "{0}" was not found.</value>
+    <value>Produsul cu ID-ul &quot;{0}&quot; nu a fost gasit.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
-    <value>Product name is required.</value>
+    <value>Numele produsului este obligatoriu.</value>
   </data>
   <data name="ProductNameMaxLength" xml:space="preserve">
-    <value>Product name must not exceed 100 characters.</value>
+    <value>Numele produsului nu poate depasi 100 de caractere.</value>
   </data>
   <data name="ProductPriceMustBePositive" xml:space="preserve">
-    <value>Product price must be greater than zero.</value>
+    <value>Pretul produsului trebuie sa fie mai mare decat zero.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Product "{0}" was created successfully.</value>
+    <value>Produsul &quot;{0}&quot; a fost creat cu succes.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Product "{0}" was updated successfully.</value>
+    <value>Produsul &quot;{0}&quot; a fost actualizat cu succes.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Product "{0}" was deleted successfully.</value>
+    <value>Produsul &quot;{0}&quot; a fost sters cu succes.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
-    <value>Product ID is required.</value>
+    <value>ID-ul produsului este obligatoriu.</value>
   </data>
 </root>

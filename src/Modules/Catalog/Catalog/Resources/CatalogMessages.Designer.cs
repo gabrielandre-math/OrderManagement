@@ -22,7 +22,7 @@ namespace Catalog.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CatalogMessages {
+    public class CatalogMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Catalog.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Catalog.Resources.CatalogMessages", typeof(CatalogMessages).Assembly);
@@ -51,7 +51,7 @@ namespace Catalog.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Catalog.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Product &quot;{0}&quot; was created successfully..
         /// </summary>
-        internal static string ProductCreated {
+        public static string ProductCreated {
             get {
                 return ResourceManager.GetString("ProductCreated", resourceCulture);
             }
@@ -72,16 +72,25 @@ namespace Catalog.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Product &quot;{0}&quot; was deleted successfully..
         /// </summary>
-        internal static string ProductDeleted {
+        public static string ProductDeleted {
             get {
                 return ResourceManager.GetString("ProductDeleted", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product name must not exceed 100 characters..
+        /// </summary>
+        public static string ProductNameMaxLength {
+            get {
+                return ResourceManager.GetString("ProductNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product name is required..
         /// </summary>
-        internal static string ProductNameRequired {
+        public static string ProductNameRequired {
             get {
                 return ResourceManager.GetString("ProductNameRequired", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace Catalog.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Product with ID &quot;{0}&quot; was not found..
         /// </summary>
-        internal static string ProductNotFound {
+        public static string ProductNotFound {
             get {
                 return ResourceManager.GetString("ProductNotFound", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace Catalog.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Product price must be greater than zero..
         /// </summary>
-        internal static string ProductPriceMustBePositive {
+        public static string ProductPriceMustBePositive {
             get {
                 return ResourceManager.GetString("ProductPriceMustBePositive", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace Catalog.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Product &quot;{0}&quot; was updated successfully..
         /// </summary>
-        internal static string ProductUpdated {
+        public static string ProductUpdated {
             get {
                 return ResourceManager.GetString("ProductUpdated", resourceCulture);
             }

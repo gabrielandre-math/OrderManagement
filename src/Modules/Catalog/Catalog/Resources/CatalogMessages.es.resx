@@ -45,6 +45,9 @@
   <data name="ProductNameRequired" xml:space="preserve">
     <value>El nombre del producto es obligatorio.</value>
   </data>
+  <data name="ProductNameMaxLength" xml:space="preserve">
+    <value>El nombre del producto no puede exceder 100 caracteres.</value>
+  </data>
   <data name="ProductPriceMustBePositive" xml:space="preserve">
     <value>El precio del producto debe ser mayor que cero.</value>
   </data>
@@ -56,5 +59,8 @@
   </data>
   <data name="ProductDeleted" xml:space="preserve">
     <value>Producto "{0}" eliminado con éxito.</value>
+  </data>
+  <data name="ProductIdRequired" xml:space="preserve">
+    <value>El ID del producto es obligatorio.</value>
   </data>
 </root>

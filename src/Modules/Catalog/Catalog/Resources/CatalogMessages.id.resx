@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -40,27 +40,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Product with ID "{0}" was not found.</value>
+    <value>Produk dengan ID &quot;{0}&quot; tidak ditemukan.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
-    <value>Product name is required.</value>
+    <value>Nama produk wajib diisi.</value>
   </data>
   <data name="ProductNameMaxLength" xml:space="preserve">
-    <value>Product name must not exceed 100 characters.</value>
+    <value>Nama produk tidak boleh melebihi 100 karakter.</value>
   </data>
   <data name="ProductPriceMustBePositive" xml:space="preserve">
-    <value>Product price must be greater than zero.</value>
+    <value>Harga produk harus lebih besar dari nol.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Product "{0}" was created successfully.</value>
+    <value>Produk &quot;{0}&quot; berhasil dibuat.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Product "{0}" was updated successfully.</value>
+    <value>Produk &quot;{0}&quot; berhasil diperbarui.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Product "{0}" was deleted successfully.</value>
+    <value>Produk &quot;{0}&quot; berhasil dihapus.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
-    <value>Product ID is required.</value>
+    <value>ID produk wajib diisi.</value>
   </data>
 </root>

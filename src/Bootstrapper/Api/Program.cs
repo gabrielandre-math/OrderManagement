@@ -2,13 +2,20 @@ using System.Globalization;
 using Carter;
 using Catalog;
 using Catalog.Data;
+using Basket;
+using Basket.Data;
+using Orders;
+using Orders.Data;
 using Shared.Data.Interceptors;
 using Shared.Exceptions.Handler;
 using Shared.Extensions;
+using Shared.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// ──────────────────────────────────────────────
+//  Cross-cutting services
+// ──────────────────────────────────────────────
 
 // Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -19,7 +26,7 @@ builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddProblemDetails();
 
 // i18n: Register localization services
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddLocalization();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
@@ -36,25 +43,42 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.ApplyCurrentCultureToResponseHeaders = true;
 });
 
-// CQRS + Validation + Loggin Pipelines
-var catalogAssembly = typeof(CatalogModule).Assembly;
-builder.Services.AddMediatRWithAssemblies(catalogAssembly);
-
-// Carter Endpoints
-builder.Services.AddCarterWithAssemblies(catalogAssembly);
-
 // EF Core interceptors (resolved via DI)
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AuditableEntityInterceptor>();
 builder.Services.AddScoped<DispatchDomainEventsInterceptor>();
 
-// Modules
-builder.Services.AddCatalogModule(builder.Configuration);
+// ──────────────────────────────────────────────
+//  Module assemblies (add once, used everywhere)
+// ──────────────────────────────────────────────
 
+var catalogAssembly = typeof(CatalogModule).Assembly;
+var basketAssembly = typeof(BasketModule).Assembly;
+var ordersAssembly = typeof(OrdersModule).Assembly;
+
+// CQRS + Validation + Logging Pipelines
+builder.Services.AddMediatRWithAssemblies(catalogAssembly, basketAssembly, ordersAssembly);
+
+// Carter Endpoints
+builder.Services.AddCarterWithAssemblies(catalogAssembly, basketAssembly, ordersAssembly);
+
+// MassTransit + RabbitMQ (integration events between modules)
+builder.Services.AddMassTransitWithAssemblies(
+    builder.Configuration, catalogAssembly, basketAssembly, ordersAssembly);
+
+// ──────────────────────────────────────────────
+//  Module registrations (DbContexts, module-specific DI)
+// ──────────────────────────────────────────────
+
+builder.Services.AddCatalogModule(builder.Configuration);
+builder.Services.AddBasketModule(builder.Configuration);
+builder.Services.AddOrdersModule(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ──────────────────────────────────────────────
+//  Middleware pipeline
+// ──────────────────────────────────────────────
 
 // Swagger: enable in Development environment
 if (app.Environment.IsDevelopment())
@@ -73,8 +97,13 @@ app.UseHttpsRedirection();
 // Carter: map all module endpoints
 app.MapCarter();
 
-// Auto-migrate + seed on startup (optional, can be removed in production)
+// ──────────────────────────────────────────────
+//  Auto-migrate + seed on startup
+// ──────────────────────────────────────────────
+
 await app.UseMigrationAsync<CatalogDbContext>();
+await app.UseMigrationAsync<BasketDbContext>();
+await app.UseMigrationAsync<OrdersDbContext>();
 
 app.Run();
 

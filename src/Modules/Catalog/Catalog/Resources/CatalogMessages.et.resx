@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -40,27 +40,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Product with ID "{0}" was not found.</value>
+    <value>Toodet ID-ga &quot;{0}&quot; ei leitud.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
-    <value>Product name is required.</value>
+    <value>Toote nimi on kohustuslik.</value>
   </data>
   <data name="ProductNameMaxLength" xml:space="preserve">
-    <value>Product name must not exceed 100 characters.</value>
+    <value>Toote nimi ei tohi uletada 100 marki.</value>
   </data>
   <data name="ProductPriceMustBePositive" xml:space="preserve">
-    <value>Product price must be greater than zero.</value>
+    <value>Toote hind peab olema suurem kui null.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Product "{0}" was created successfully.</value>
+    <value>Toode &quot;{0}&quot; loodi edukalt.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Product "{0}" was updated successfully.</value>
+    <value>Toode &quot;{0}&quot; uuendati edukalt.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Product "{0}" was deleted successfully.</value>
+    <value>Toode &quot;{0}&quot; kustutati edukalt.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
-    <value>Product ID is required.</value>
+    <value>Toote ID on kohustuslik.</value>
   </data>
 </root>

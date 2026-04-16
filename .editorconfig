@@ -1,0 +1,14 @@
+root = true
+
+[*.cs]
+# File-scoped namespaces (namespace X;)
+csharp_style_namespace_declarations = file_scoped:warning
+
+# No auto-generated usings at top of file
+dotnet_sort_system_directives_first = true
+
+# Flag unnecessary usings as warnings
+dotnet_diagnostic.IDE0005.severity = warning
+
+# New files should be public, not internal
+dotnet_style_require_accessibility_modifiers = always:suggestion

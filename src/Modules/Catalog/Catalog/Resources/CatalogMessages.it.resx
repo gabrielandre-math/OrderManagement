@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -40,27 +40,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Product with ID "{0}" was not found.</value>
+    <value>Prodotto con ID &quot;{0}&quot; non trovato.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
-    <value>Product name is required.</value>
+    <value>Il nome del prodotto e obbligatorio.</value>
   </data>
   <data name="ProductNameMaxLength" xml:space="preserve">
-    <value>Product name must not exceed 100 characters.</value>
+    <value>Il nome del prodotto non deve superare i 100 caratteri.</value>
   </data>
   <data name="ProductPriceMustBePositive" xml:space="preserve">
-    <value>Product price must be greater than zero.</value>
+    <value>Il prezzo del prodotto deve essere maggiore di zero.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Product "{0}" was created successfully.</value>
+    <value>Prodotto &quot;{0}&quot; creato con successo.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Product "{0}" was updated successfully.</value>
+    <value>Prodotto &quot;{0}&quot; aggiornato con successo.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Product "{0}" was deleted successfully.</value>
+    <value>Prodotto &quot;{0}&quot; eliminato con successo.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
-    <value>Product ID is required.</value>
+    <value>L'ID del prodotto e obbligatorio.</value>
   </data>
 </root>

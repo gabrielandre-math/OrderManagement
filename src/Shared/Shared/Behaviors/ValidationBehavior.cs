@@ -21,13 +21,17 @@ public class ValidationBehavior<TRequest, TResponse>
 
         if (failures.Count > 0)
         {
-            // Concatenates all validation messages (already located by FluentValidation)
             var errorMessage = string.Join("; ", failures.Select(f => f.ErrorMessage));
+            var error = Error.Validation("Validation.Failed", errorMessage);
 
-            // Creates a Result.Failure instead of throwing an exception
-            // The TResponse can be Result or Result<T> — both inherit from Result
-            return (dynamic)Result.Failure(
-                Error.Validation("Validation.Failed", errorMessage));
+            // TResponse is Result<T>; use reflection to call Result.Failure<T>(error)
+            var valueType = typeof(TResponse).GetGenericArguments()[0];
+            var failureResult = typeof(Result)
+                .GetMethod(nameof(Result.Failure), 1, [typeof(Error)])!
+                .MakeGenericMethod(valueType)
+                .Invoke(null, [error])!;
+
+            return (TResponse)failureResult;
         }
 
         return await next();
