@@ -1,27 +1,29 @@
 # Order Management API
 
-API modular em **.NET 8** com arquitetura de módulos (Catalog, Basket, Orders), usando **PostgreSQL**, **RabbitMQ**, **MediatR**, **FluentValidation**, **Carter**, **MassTransit** e **i18n com 33 idiomas**.
+API modular em .NET 8 com arquitetura de módulos (Catalog, Basket, Orders), utilizando PostgreSQL, RabbitMQ, MediatR, FluentValidation, Carter, MassTransit e internacionalização (i18n) com suporte a 33 idiomas.
 
 ---
 
-## 📋 Sumário
+## Sumário
 
-- [Pré-requisitos locais](#-pré-requisitos-locais)
-- [Executar localmente](#-executar-localmente)
-- [Deploy na AWS EC2 Free Tier (Windows + RDP)](#-deploy-na-aws-ec2-free-tier-windows--rdp)
-  - [Passo 1 — Criar a instância EC2](#passo-1--criar-a-instância-ec2)
-  - [Passo 2 — Conectar via RDP](#passo-2--conectar-via-rdp)
-  - [Passo 3 — Instalar Docker na EC2](#passo-3--instalar-docker-na-ec2)
-  - [Passo 4 — Clonar o projeto](#passo-4--clonar-o-projeto)
-  - [Passo 5 — Subir a aplicação](#passo-5--subir-a-aplicação)
-  - [Passo 6 — Liberar portas no Security Group](#passo-6--liberar-portas-no-security-group)
-  - [Passo 7 — Testar](#passo-7--testar)
-- [Endpoints disponíveis](#-endpoints-disponíveis)
-- [i18n — Idiomas suportados](#-i18n--idiomas-suportados)
+- [Pré-requisitos](#pré-requisitos)
+- [Execução local](#execução-local)
+- [Deploy na AWS EC2 Free Tier (Windows + RDP)](#deploy-na-aws-ec2-free-tier-windows--rdp)
+  - [1. Criar a instância EC2](#1-criar-a-instância-ec2)
+  - [2. Conectar via RDP](#2-conectar-via-rdp)
+  - [3. Instalar Docker na EC2](#3-instalar-docker-na-ec2)
+  - [4. Clonar o projeto](#4-clonar-o-projeto)
+  - [5. Subir a aplicação](#5-subir-a-aplicação)
+  - [6. Liberar portas no Security Group](#6-liberar-portas-no-security-group)
+  - [7. Validar o deploy](#7-validar-o-deploy)
+- [Endpoints](#endpoints)
+- [Internacionalização (i18n)](#internacionalização-i18n)
+- [Estimativa de custos AWS](#estimativa-de-custos-aws)
+- [Observações](#observações)
 
 ---
 
-## 🛠 Pré-requisitos locais
+## Pré-requisitos
 
 | Ferramenta | Versão mínima |
 |---|---|
@@ -31,7 +33,7 @@ API modular em **.NET 8** com arquitetura de módulos (Catalog, Basket, Orders),
 
 ---
 
-## 🚀 Executar localmente
+## Execução local
 
 ```bash
 # 1. Clonar o repositório
@@ -67,9 +69,9 @@ docker-compose down -v
 
 ---
 
-## ☁ Deploy na AWS EC2 Free Tier (Windows + RDP)
+## Deploy na AWS EC2 Free Tier (Windows + RDP)
 
-### Passo 1 — Criar a instância EC2
+### 1. Criar a instância EC2
 
 1. Acesse o [Console AWS](https://console.aws.amazon.com/ec2/)
 2. Clique em **Launch Instance**
@@ -93,11 +95,11 @@ docker-compose down -v
 
 5. Clique **Launch Instance**
 
-> ⚠️ **IMPORTANTE:** O `t2.micro` tem apenas **1 GB de RAM**. O build do Docker pode falhar por falta de memória. Se isso acontecer, considere usar `t2.small` (2 GB) ou `t3.small` — não são free tier, mas custam ~$0.02/hora (~$15/mês).
+> **Nota:** O `t2.micro` possui apenas 1 GB de RAM. O build do Docker pode falhar por falta de memória. Nesse caso, considere `t2.small` (2 GB) ou `t3.small` — fora do free tier, custam aproximadamente $0.02/hora (~$15/mês).
 
 ---
 
-### Passo 2 — Conectar via RDP
+### 2. Conectar via RDP
 
 1. No console EC2, selecione a instância → **Connect** → aba **RDP client**
 2. Clique em **Get password** → faça upload do arquivo `.pem` → **Decrypt password**
@@ -109,7 +111,7 @@ docker-compose down -v
 
 ---
 
-### Passo 3 — Instalar Docker na EC2
+### 3. Instalar Docker na EC2
 
 Dentro da instância via RDP, abra o **PowerShell como Administrador** e execute:
 
@@ -130,7 +132,7 @@ docker --version
 docker-compose --version
 ```
 
-> 💡 **Alternativa (recomendada para t2.micro):** Use uma **AMI Amazon Linux 2023** em vez de Windows, que consome menos RAM:
+> **Alternativa recomendada para t2.micro:** Utilizar uma AMI Amazon Linux 2023 em vez de Windows, pois consome significativamente menos RAM:
 > ```bash
 > sudo yum install -y docker
 > sudo systemctl start docker
@@ -142,7 +144,7 @@ docker-compose --version
 
 ---
 
-### Passo 4 — Clonar o projeto
+### 4. Clonar o projeto
 
 ```powershell
 # Instalar Git (se não tiver)
@@ -154,11 +156,11 @@ git clone <url-do-repositorio>
 cd OrderManagementApi
 ```
 
-**Ou** copie os arquivos via RDP (arrastar e soltar, ou pasta compartilhada).
+Alternativamente, copie os arquivos via RDP (arrastar e soltar ou pasta compartilhada).
 
 ---
 
-### Passo 5 — Subir a aplicação
+### 5. Subir a aplicação
 
 ```powershell
 cd C:\OrderManagementApi
@@ -173,7 +175,7 @@ docker-compose logs -f api
 docker-compose ps
 ```
 
-**Resultado esperado:**
+Resultado esperado:
 ```
 NAME                      STATUS
 orderdb                   running   0.0.0.0:5432->5432
@@ -181,7 +183,7 @@ messagebroker             running   0.0.0.0:5672->5672, 0.0.0.0:15672->15672
 ordermanagement-api       running   0.0.0.0:5000->8080
 ```
 
-> 🔧 **Se o build falhar por falta de memória**, crie um swap file:
+> **Se o build falhar por falta de memória**, aumente a memória virtual:
 > ```powershell
 > # No Windows, aumente o virtual memory:
 > # System Properties → Advanced → Performance Settings → Advanced → Virtual Memory → Change
@@ -190,7 +192,7 @@ ordermanagement-api       running   0.0.0.0:5000->8080
 
 ---
 
-### Passo 6 — Liberar portas no Security Group
+### 6. Liberar portas no Security Group
 
 Se não fez no Passo 1, vá ao console AWS:
 
@@ -213,7 +215,7 @@ New-NetFirewallRule -DisplayName "RabbitMQ UI" -Direction Inbound -Port 15672 -P
 
 ---
 
-### Passo 7 — Testar
+### 7. Validar o deploy
 
 Substitua `<EC2-PUBLIC-IP>` pelo IP público da instância (visível no console EC2):
 
@@ -231,7 +233,7 @@ http://<EC2-PUBLIC-IP>:15672  (guest/guest)
 
 ---
 
-## 📡 Endpoints disponíveis
+## Endpoints
 
 | Método | Rota | Descrição |
 |---|---|---|
@@ -243,9 +245,9 @@ http://<EC2-PUBLIC-IP>:15672  (guest/guest)
 
 ---
 
-## 🌍 i18n — Idiomas suportados
+## Internacionalização (i18n)
 
-Envie o header `Accept-Language` com o código do idioma:
+A API suporta 33 idiomas via header `Accept-Language`. Se o idioma solicitado não possuir tradução, o fallback é `en-US`.
 
 | Idioma | Código | Idioma | Código |
 |---|---|---|---|
@@ -272,7 +274,7 @@ Envie o header `Accept-Language` com o código do idioma:
 | Kiswahili | `sw` | Català | `ca` |
 | Euskara | `eu` | | |
 
-**Exemplo:**
+Exemplo de requisição com idioma japonês:
 ```bash
 curl -X PUT http://localhost:5000/api/products/{id} \
   -H "Content-Type: application/json" \
@@ -285,7 +287,7 @@ curl -X PUT http://localhost:5000/api/products/{id} \
 
 ---
 
-## 💰 Estimativa de custos AWS
+## Estimativa de custos AWS
 
 | Recurso | Free Tier | Após 12 meses |
 |---|---|---|
@@ -296,7 +298,7 @@ curl -X PUT http://localhost:5000/api/products/{id} \
 
 ---
 
-## ⚠️ Dicas importantes
+## Observações
 
 1. **t2.micro (1 GB RAM)** é apertado para Docker + PostgreSQL + RabbitMQ + API. Se travar, use `t2.small` ($0.023/h ≈ $17/mês).
 
