@@ -12,6 +12,7 @@ using Shared.Extensions;
 using Shared.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseWindowsService();
 
 // ──────────────────────────────────────────────
 //  Cross-cutting services
@@ -80,8 +81,11 @@ var app = builder.Build();
 //  Middleware pipeline
 // ──────────────────────────────────────────────
 
-// Swagger: enable in Development environment
-if (app.Environment.IsDevelopment())
+// Swagger: enable in Development or when explicitly configured
+var enableSwagger = app.Environment.IsDevelopment()
+    || builder.Configuration.GetValue<bool>("EnableSwagger");
+
+if (enableSwagger)
 {
     app.UseSwagger();
     app.UseSwaggerUI();
