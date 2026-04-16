@@ -24,6 +24,12 @@ public class ValidationBehavior<TRequest, TResponse>
             var errorMessage = string.Join("; ", failures.Select(f => f.ErrorMessage));
             var error = Error.Validation("Validation.Failed", errorMessage);
 
+            // If TResponse is non-generic Result, return Result.Failure directly
+            if (typeof(TResponse) == typeof(Result))
+            {
+                return (TResponse)(object)Result.Failure(error);
+            }
+
             // TResponse is Result<T>; use reflection to call Result.Failure<T>(error)
             var valueType = typeof(TResponse).GetGenericArguments()[0];
             var failureResult = typeof(Result)

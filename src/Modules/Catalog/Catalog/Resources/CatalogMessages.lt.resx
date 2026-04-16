@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Produktas su ID &quot;{0}&quot; nerastas.</value>
+    <value>Produktas su ID "{0}" nerastas.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Produkto pavadinimas yra privalomas.</value>
@@ -52,13 +52,13 @@
     <value>Produkto kaina turi buti didesne uz nuli.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Produktas &quot;{0}&quot; sekmingai sukurtas.</value>
+    <value>Produktas "{0}" sekmingai sukurtas.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Produktas &quot;{0}&quot; sekmingai atnaujintas.</value>
+    <value>Produktas "{0}" sekmingai atnaujintas.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Produktas &quot;{0}&quot; sekmingai istrintas.</value>
+    <value>Produktas "{0}" sekmingai istrintas.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>Produkto ID yra privalomas.</value>

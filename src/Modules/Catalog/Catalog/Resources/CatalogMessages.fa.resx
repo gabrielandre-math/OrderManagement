@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>محصول با شناسه &quot;{0}&quot; یافت نشد.</value>
+    <value>محصول با شناسه "{0}" یافت نشد.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>نام محصول الزامی است.</value>
@@ -52,13 +52,13 @@
     <value>قیمت محصول باید بزرگتر از صفر باشد.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>محصول &quot;{0}&quot; با موفقیت ایجاد شد.</value>
+    <value>محصول "{0}" با موفقیت ایجاد شد.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>محصول &quot;{0}&quot; با موفقیت به‌روزرسانی شد.</value>
+    <value>محصول "{0}" با موفقیت به‌روزرسانی شد.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>محصول &quot;{0}&quot; با موفقیت حذف شد.</value>
+    <value>محصول "{0}" با موفقیت حذف شد.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>شناسه محصول الزامی است.</value>

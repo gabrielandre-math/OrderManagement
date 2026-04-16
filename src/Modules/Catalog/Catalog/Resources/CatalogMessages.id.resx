@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Produk dengan ID &quot;{0}&quot; tidak ditemukan.</value>
+    <value>Produk dengan ID "{0}" tidak ditemukan.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Nama produk wajib diisi.</value>
@@ -52,13 +52,13 @@
     <value>Harga produk harus lebih besar dari nol.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Produk &quot;{0}&quot; berhasil dibuat.</value>
+    <value>Produk "{0}" berhasil dibuat.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Produk &quot;{0}&quot; berhasil diperbarui.</value>
+    <value>Produk "{0}" berhasil diperbarui.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Produk &quot;{0}&quot; berhasil dihapus.</value>
+    <value>Produk "{0}" berhasil dihapus.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>ID produk wajib diisi.</value>

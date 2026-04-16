@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Το προϊόν με ID &quot;{0}&quot; δεν βρέθηκε.</value>
+    <value>Το προϊόν με ID "{0}" δεν βρέθηκε.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Το όνομα του προϊόντος είναι υποχρεωτικό.</value>
@@ -52,13 +52,13 @@
     <value>Η τιμή του προϊόντος πρέπει να είναι μεγαλύτερη από μηδέν.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Το προϊόν &quot;{0}&quot; δημιουργήθηκε επιτυχώς.</value>
+    <value>Το προϊόν "{0}" δημιουργήθηκε επιτυχώς.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Το προϊόν &quot;{0}&quot; ενημερώθηκε επιτυχώς.</value>
+    <value>Το προϊόν "{0}" ενημερώθηκε επιτυχώς.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Το προϊόν &quot;{0}&quot; διαγράφηκε επιτυχώς.</value>
+    <value>Το προϊόν "{0}" διαγράφηκε επιτυχώς.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>Το ID του προϊόντος είναι υποχρεωτικό.</value>

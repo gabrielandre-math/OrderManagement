@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>המוצר עם מזהה &quot;{0}&quot; לא נמצא.</value>
+    <value>המוצר עם מזהה "{0}" לא נמצא.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>שם המוצר הוא שדה חובה.</value>
@@ -52,13 +52,13 @@
     <value>מחיר המוצר חייב להיות גדול מאפס.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>המוצר &quot;{0}&quot; נוצר בהצלחה.</value>
+    <value>המוצר "{0}" נוצר בהצלחה.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>המוצר &quot;{0}&quot; עודכן בהצלחה.</value>
+    <value>המוצר "{0}" עודכן בהצלחה.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>המוצר &quot;{0}&quot; נמחק בהצלחה.</value>
+    <value>המוצר "{0}" נמחק בהצלחה.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>מזהה המוצר הוא שדה חובה.</value>

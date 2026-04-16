@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Produkts ar ID &quot;{0}&quot; nav atrasts.</value>
+    <value>Produkts ar ID "{0}" nav atrasts.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Produkta nosaukums ir obligats.</value>
@@ -52,13 +52,13 @@
     <value>Produkta cenai jabut lielai par nulli.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Produkts &quot;{0}&quot; veiksmigi izveidots.</value>
+    <value>Produkts "{0}" veiksmigi izveidots.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Produkts &quot;{0}&quot; veiksmigi atjauninats.</value>
+    <value>Produkts "{0}" veiksmigi atjauninats.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Produkts &quot;{0}&quot; veiksmigi dzests.</value>
+    <value>Produkts "{0}" veiksmigi dzests.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>Produkta ID ir obligats.</value>

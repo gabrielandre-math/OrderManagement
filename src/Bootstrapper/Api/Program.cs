@@ -30,12 +30,12 @@ builder.Services.AddLocalization();
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    var supportedCultures = new[]
-    {
-        new CultureInfo("en-US"),
-        new CultureInfo("pt-BR"),
-        new CultureInfo("es")
-    };
+    var supportedCultures = new[] {
+        "en-US", "pt-BR", "es", "fr", "ja", "zh-CN", "zh-TW", "ko", "de", "it",
+        "ru", "ar", "hi", "pl", "nl", "sv", "da", "no", "fi", "cs", "hu", "ro",
+        "bg", "el", "tr", "th", "vi", "id", "ms", "uk", "sk", "hr", "sr", "sl",
+        "lt", "lv", "et", "he", "fa", "bn", "sw", "ca", "eu"
+    }.Select(c => new CultureInfo(c)).ToList();
 
     options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
     options.SupportedCultures = supportedCultures;

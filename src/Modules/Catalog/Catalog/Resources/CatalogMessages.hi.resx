@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>ID &quot;{0}&quot; वाला उत्पाद नहीं मिला।</value>
+    <value>ID "{0}" वाला उत्पाद नहीं मिला।</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>उत्पाद का नाम आवश्यक है।</value>
@@ -52,13 +52,13 @@
     <value>उत्पाद की कीमत शून्य से अधिक होनी चाहिए।</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>उत्पाद &quot;{0}&quot; सफलतापूर्वक बनाया गया।</value>
+    <value>उत्पाद "{0}" सफलतापूर्वक बनाया गया।</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>उत्पाद &quot;{0}&quot; सफलतापूर्वक अपडेट किया गया।</value>
+    <value>उत्पाद "{0}" सफलतापूर्वक अपडेट किया गया।</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>उत्पाद &quot;{0}&quot; सफलतापूर्वक हटाया गया।</value>
+    <value>उत्पाद "{0}" सफलतापूर्वक हटाया गया।</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>उत्पाद ID आवश्यक है।</value>

@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>ไม่พบสินค้าที่มี ID &quot;{0}&quot;</value>
+    <value>ไม่พบสินค้าที่มี ID "{0}"</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>ชื่อสินค้าจำเป็นต้องระบุ</value>
@@ -52,13 +52,13 @@
     <value>ราคาสินค้าต้องมากกว่าศูนย์</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>สร้างสินค้า &quot;{0}&quot; สำเร็จแล้ว</value>
+    <value>สร้างสินค้า "{0}" สำเร็จแล้ว</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>อัปเดตสินค้า &quot;{0}&quot; สำเร็จแล้ว</value>
+    <value>อัปเดตสินค้า "{0}" สำเร็จแล้ว</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>ลบสินค้า &quot;{0}&quot; สำเร็จแล้ว</value>
+    <value>ลบสินค้า "{0}" สำเร็จแล้ว</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>รหัสสินค้าจำเป็นต้องระบุ</value>

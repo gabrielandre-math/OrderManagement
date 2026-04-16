@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Tuotetta tunnuksella &quot;{0}&quot; ei loytynyt.</value>
+    <value>Tuotetta tunnuksella "{0}" ei loytynyt.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Tuotteen nimi on pakollinen.</value>
@@ -52,13 +52,13 @@
     <value>Tuotteen hinnan on oltava suurempi kuin nolla.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Tuote &quot;{0}&quot; luotiin onnistuneesti.</value>
+    <value>Tuote "{0}" luotiin onnistuneesti.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Tuote &quot;{0}&quot; paivitettiin onnistuneesti.</value>
+    <value>Tuote "{0}" paivitettiin onnistuneesti.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Tuote &quot;{0}&quot; poistettiin onnistuneesti.</value>
+    <value>Tuote "{0}" poistettiin onnistuneesti.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>Tuotteen tunnus on pakollinen.</value>

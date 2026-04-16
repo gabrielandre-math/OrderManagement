@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Proizvod s ID-om &quot;{0}&quot; nije pronadjen.</value>
+    <value>Proizvod s ID-om "{0}" nije pronadjen.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Naziv proizvoda je obavezan.</value>
@@ -52,13 +52,13 @@
     <value>Cijena proizvoda mora biti veca od nule.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Proizvod &quot;{0}&quot; uspjesno je kreiran.</value>
+    <value>Proizvod "{0}" uspjesno je kreiran.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Proizvod &quot;{0}&quot; uspjesno je azuriran.</value>
+    <value>Proizvod "{0}" uspjesno je azuriran.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Proizvod &quot;{0}&quot; uspjesno je obrisan.</value>
+    <value>Proizvod "{0}" uspjesno je obrisan.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>ID proizvoda je obavezan.</value>

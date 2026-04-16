@@ -15,8 +15,9 @@ public class UpdateProductValidator : AbstractValidator<UpdateProductCommand>
         RuleFor(x => x.Name)
             .NotEmpty()
             .WithMessage(localizer["ProductNameRequired"]);
+
         RuleFor(x => x.Price)
             .GreaterThan(0)
-            .WithMessage(localizer["ProductPriceGreaterThanZero"]);
+            .WithMessage(localizer["ProductPriceMustBePositive"]);
     }
 }

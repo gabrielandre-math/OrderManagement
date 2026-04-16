@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>ID &quot;{0}&quot; の製品が見つかりませんでした。</value>
+    <value>ID "{0}" の製品が見つかりませんでした。</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>製品名は必須です。</value>
@@ -52,13 +52,13 @@
     <value>製品価格はゼロより大きくなければなりません。</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>製品 &quot;{0}&quot; が正常に作成されました。</value>
+    <value>製品 "{0}" が正常に作成されました。</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>製品 &quot;{0}&quot; が正常に更新されました。</value>
+    <value>製品 "{0}" が正常に更新されました。</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>製品 &quot;{0}&quot; が正常に削除されました。</value>
+    <value>製品 "{0}" が正常に削除されました。</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>製品IDは必須です。</value>

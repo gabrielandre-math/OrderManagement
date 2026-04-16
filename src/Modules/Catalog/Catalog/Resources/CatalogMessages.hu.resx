@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>A(z) &quot;{0}&quot; azonositoju termek nem talalhato.</value>
+    <value>A(z) "{0}" azonositoju termek nem talalhato.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>A termek neve kotelezo.</value>
@@ -52,13 +52,13 @@
     <value>A termek aranak nullanal nagyobbnak kell lennie.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>A(z) &quot;{0}&quot; termek sikeresen letrehozva.</value>
+    <value>A(z) "{0}" termek sikeresen letrehozva.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>A(z) &quot;{0}&quot; termek sikeresen frissitve.</value>
+    <value>A(z) "{0}" termek sikeresen frissitve.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>A(z) &quot;{0}&quot; termek sikeresen torolve.</value>
+    <value>A(z) "{0}" termek sikeresen torolve.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>A termek azonositoja kotelezo.</value>

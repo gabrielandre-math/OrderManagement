@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Product met ID &quot;{0}&quot; is niet gevonden.</value>
+    <value>Product met ID "{0}" is niet gevonden.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Productnaam is verplicht.</value>
@@ -52,13 +52,13 @@
     <value>Productprijs moet groter zijn dan nul.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Product &quot;{0}&quot; is succesvol aangemaakt.</value>
+    <value>Product "{0}" is succesvol aangemaakt.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Product &quot;{0}&quot; is succesvol bijgewerkt.</value>
+    <value>Product "{0}" is succesvol bijgewerkt.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Product &quot;{0}&quot; is succesvol verwijderd.</value>
+    <value>Product "{0}" is succesvol verwijderd.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>Product-ID is verplicht.</value>

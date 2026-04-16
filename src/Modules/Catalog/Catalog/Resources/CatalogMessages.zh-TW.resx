@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>ID為&quot;{0}&quot;的產品未找到。</value>
+    <value>ID為"{0}"的產品未找到。</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>產品名稱為必填項。</value>
@@ -52,13 +52,13 @@
     <value>產品價格必須大於零。</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>產品&quot;{0}&quot;建立成功。</value>
+    <value>產品"{0}"建立成功。</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>產品&quot;{0}&quot;更新成功。</value>
+    <value>產品"{0}"更新成功。</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>產品&quot;{0}&quot;刪除成功。</value>
+    <value>產品"{0}"刪除成功。</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>產品ID為必填項。</value>

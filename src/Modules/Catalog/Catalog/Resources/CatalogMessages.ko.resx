@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>ID &quot;{0}&quot;인 제품을 찾을 수 없습니다.</value>
+    <value>ID "{0}"인 제품을 찾을 수 없습니다.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>제품 이름은 필수입니다.</value>
@@ -52,13 +52,13 @@
     <value>제품 가격은 0보다 커야 합니다.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>제품 &quot;{0}&quot;이(가) 성공적으로 생성되었습니다.</value>
+    <value>제품 "{0}"이(가) 성공적으로 생성되었습니다.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>제품 &quot;{0}&quot;이(가) 성공적으로 업데이트되었습니다.</value>
+    <value>제품 "{0}"이(가) 성공적으로 업데이트되었습니다.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>제품 &quot;{0}&quot;이(가) 성공적으로 삭제되었습니다.</value>
+    <value>제품 "{0}"이(가) 성공적으로 삭제되었습니다.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>제품 ID는 필수입니다.</value>

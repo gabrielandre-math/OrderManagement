@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Продукт с ID &quot;{0}&quot; не е намерен.</value>
+    <value>Продукт с ID "{0}" не е намерен.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Името на продукта е задължително.</value>
@@ -52,13 +52,13 @@
     <value>Цената на продукта трябва да бъде по-голяма от нула.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Продукт &quot;{0}&quot; е създаден успешно.</value>
+    <value>Продукт "{0}" е създаден успешно.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Продукт &quot;{0}&quot; е актуализиран успешно.</value>
+    <value>Продукт "{0}" е актуализиран успешно.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Продукт &quot;{0}&quot; е изтрит успешно.</value>
+    <value>Продукт "{0}" е изтрит успешно.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>ID на продукта е задължително.</value>

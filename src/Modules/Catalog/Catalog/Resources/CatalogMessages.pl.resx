@@ -40,7 +40,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ProductNotFound" xml:space="preserve">
-    <value>Produkt o ID &quot;{0}&quot; nie zostal znaleziony.</value>
+    <value>Produkt o ID "{0}" nie zostal znaleziony.</value>
   </data>
   <data name="ProductNameRequired" xml:space="preserve">
     <value>Nazwa produktu jest wymagana.</value>
@@ -52,13 +52,13 @@
     <value>Cena produktu musi byc wieksza od zera.</value>
   </data>
   <data name="ProductCreated" xml:space="preserve">
-    <value>Produkt &quot;{0}&quot; zostal pomyslnie utworzony.</value>
+    <value>Produkt "{0}" zostal pomyslnie utworzony.</value>
   </data>
   <data name="ProductUpdated" xml:space="preserve">
-    <value>Produkt &quot;{0}&quot; zostal pomyslnie zaktualizowany.</value>
+    <value>Produkt "{0}" zostal pomyslnie zaktualizowany.</value>
   </data>
   <data name="ProductDeleted" xml:space="preserve">
-    <value>Produkt &quot;{0}&quot; zostal pomyslnie usuniety.</value>
+    <value>Produkt "{0}" zostal pomyslnie usuniety.</value>
   </data>
   <data name="ProductIdRequired" xml:space="preserve">
     <value>ID produktu jest wymagane.</value>
