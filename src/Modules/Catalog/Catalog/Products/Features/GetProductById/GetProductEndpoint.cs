@@ -1,4 +1,4 @@
-﻿using Carter;
+using Carter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
@@ -6,7 +6,7 @@ using Shared.Extensions;
 
 namespace Catalog.Products.Features.GetProductById;
 
-public class GetProductByIdEndpoint : ICarterModule
+public class GetProductEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {

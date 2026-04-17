@@ -1,4 +1,5 @@
 ﻿using Catalog.Data;
+using Catalog.Products.Extensions;
 using Catalog.Resources;
 using Microsoft.Extensions.Localization;
 using Shared.Contracts.CQRS;
@@ -11,26 +12,15 @@ public class UpdateProductHandler(
     IStringLocalizer<CatalogMessages> localizer)
     : ICommandHandler<UpdateProductCommand>
 {
-    public async Task<Result> Handle(
-        UpdateProductCommand command,
-        CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
-        var product = await db.Products.FindAsync([command.Id], cancellationToken);
-        if (product is null)
-            return Result.Failure(
-                Error.NotFound("Product-Not-Found",
-                localizer["ProductNotFound", command.Id]));
+        var result = await db.Products.GetOrNotFoundAsync(command.Id, localizer, cancellationToken);
 
-        // A Factory method can be used here to create a
-        // new instance of the Product with the updated values,
-        // instead of modifying the existing instance.
-        product.Name = command.Name;
-        product.Description = command.Description;
-        product.ImageUrl = command.ImageUrl;
-        product.Price = command.Price;
+        result.Tap(p => p.Update(command.Name, command.Description, command.ImageUrl, command.Price));
+
+        if (result.IsFailure) return result;
 
         await db.SaveChangesAsync(cancellationToken);
         return Result.Success();
-
     }
 }

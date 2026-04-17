@@ -27,24 +27,23 @@ public sealed record Error
         Type = type;
     }
 
-    public string Code { get; }
-    public string Message { get; }
-    public ErrorType Type { get; }
-
+    public string Code { get; init; }
+    public string Message { get; init; }
+    public ErrorType Type { get; init; }
+    
     // Factory methods - Typed constructors for different error types
 
     /// <summary>Resource not found → 404</summary>
     public static Error NotFound(string code, string message) 
         => new(code, message, ErrorType.NotFound);
-
-
+    
     /// <summary>Validation Error → 400</summary>
-    public static Error Validation(string code, string message) =>
+    public static Error Validation(string code, string message = "") =>
         new(code, message, ErrorType.Validation);
-
+    
 
     /// <summary>Invalid request due to business rule → 400</summary>
-    public static Error BadRequest(string code, string message) => 
+    public static Error BadRequest(string code, string message = "") => 
         new(code, message, ErrorType.BadRequest);
 
 

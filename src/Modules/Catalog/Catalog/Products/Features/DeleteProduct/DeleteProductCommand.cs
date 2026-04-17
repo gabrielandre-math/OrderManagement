@@ -1,4 +1,3 @@
-﻿
 using Shared.Contracts.CQRS;
 
 namespace Catalog.Products.Features.DeleteProduct;

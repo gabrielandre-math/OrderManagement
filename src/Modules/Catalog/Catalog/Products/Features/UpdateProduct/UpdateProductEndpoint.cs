@@ -14,15 +14,8 @@ public class UpdateProductEndpoint : ICarterModule
     {
         app.MapPut("/api/products/{id:guid}", async (Guid id, UpdateProductRequest request, ISender sender) =>
         {
-            var command = new UpdateProductCommand(
-                id,
-                request.Name,
-                request.Description,
-                request.ImageUrl,
-                request.Price);
-
+            var command = new UpdateProductCommand(id, request.Name, request.Description, request.ImageUrl, request.Price);
             var result = await sender.Send(command);
-
             return result.ToProblemResult();
         });
     }

@@ -1,4 +1,4 @@
-﻿using Catalog.Products.Features.GetProducts;
+using Catalog.Products.Features.GetProducts;
 using Shared.Contracts.CQRS;
 using Shared.Contracts.Results;
 

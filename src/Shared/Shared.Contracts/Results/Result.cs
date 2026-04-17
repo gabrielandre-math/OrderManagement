@@ -48,7 +48,19 @@ public class Result<TValue> : Result
     {
         _value = value;
     }
-
+    
+    public Result<TNewValue> Map<TNewValue>(Func<TValue, TNewValue> mapper)
+    {
+        return IsSuccess 
+            ? Result.Success(mapper(Value)) 
+            : Result.Failure<TNewValue>(Error);
+    }
+    public Result<TValue> Tap(Action<TValue> action)
+    {
+        if (IsSuccess) action(Value);
+        return this;
+    }
+    
     /// <summary>
     // The value returned by the operation.
     // Throws an InvalidOperationException if accessed on a failure basis.
