@@ -20,7 +20,7 @@ public class Result
 
     public bool IsSuccess { get; }
     public bool IsFailure => !IsSuccess;
-    public Error Error { get; }
+    public Error Error { get; init; }
 
     /// <summary>Creates a success result without value.</summary>
     public static Result Success() => new(true, Error.None);
