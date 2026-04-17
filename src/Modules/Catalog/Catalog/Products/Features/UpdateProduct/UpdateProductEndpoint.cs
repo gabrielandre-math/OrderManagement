@@ -19,8 +19,8 @@ public class UpdateProductEndpoint : ICarterModule
             var result = await sender.Send(command);
             return result.ToProblemResult();
         }).WithName("UpdateProduct")
-        .WithSummary("Atualiza um produto existente")
-        .WithDescription("Altera as informações de um produto. Se o ID não for encontrado, retorna 404.")
+        .WithSummary("Update an existing product")
+        .WithDescription("Updates the information of a product. Returns 404 if the ID is not found.")
         .Produces(StatusCodes.Status204NoContent)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .ProducesProblem(StatusCodes.Status404NotFound);;

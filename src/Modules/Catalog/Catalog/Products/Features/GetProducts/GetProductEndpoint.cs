@@ -17,8 +17,8 @@ public class GetProductEndpoint : ICarterModule
             var result = await sender.Send(new GetProductQuery(pageIndex, pageSize));
             return result.ToProblemResult();
         }).WithName("GetProducts")
-        .WithSummary("Lista produtos com paginação")
-        .WithDescription("Retorna uma lista paginada de produtos do catálogo.")
+        .WithSummary("List products with pagination")
+        .WithDescription("Returns a paginated list of products from the catalog.")
         .Produces<PaginatedResult<ProductDto>>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest);;
     }

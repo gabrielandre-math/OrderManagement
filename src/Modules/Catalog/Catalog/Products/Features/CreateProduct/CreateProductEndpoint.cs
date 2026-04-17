@@ -30,8 +30,8 @@ public class CreateProductEndpoint : ICarterModule
 
             return result.ToCreatedResult($"/api/products/{{result.Value}}");
         }).WithName("CreateProduct")
-        .WithSummary("Cria um novo produto")
-        .WithDescription("Adiciona um novo produto ao catálogo e retorna o ID gerado.")
+        .WithSummary("Create a new product")
+        .WithDescription("Adds a new product to the catalog and returns the generated ID.")
         .Produces<Guid>(StatusCodes.Status201Created)
         .ProducesProblem(StatusCodes.Status400BadRequest);;
     }
