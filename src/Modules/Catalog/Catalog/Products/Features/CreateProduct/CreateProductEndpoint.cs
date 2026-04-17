@@ -1,6 +1,7 @@
 ﻿using Carter;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Shared.Extensions;
 
@@ -28,6 +29,10 @@ public class CreateProductEndpoint : ICarterModule
             var result = await sender.Send(command);
 
             return result.ToCreatedResult($"/api/products/{{result.Value}}");
-        });
+        }).WithName("CreateProduct")
+        .WithSummary("Cria um novo produto")
+        .WithDescription("Adiciona um novo produto ao catálogo e retorna o ID gerado.")
+        .Produces<Guid>(StatusCodes.Status201Created)
+        .ProducesProblem(StatusCodes.Status400BadRequest);;
     }
 }
