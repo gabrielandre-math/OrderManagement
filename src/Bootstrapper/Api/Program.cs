@@ -11,8 +11,13 @@ using Shared.Exceptions.Handler;
 using Shared.Extensions;
 using Shared.Messaging.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseWindowsService();
+var appOptions = new WebApplicationOptions
+{
+    Args = args,
+    ContentRootPath = AppContext.BaseDirectory
+};
+var builder = WebApplication.CreateBuilder(appOptions);
+builder.Services.AddWindowsService();
 
 // ──────────────────────────────────────────────
 //  Cross-cutting services
@@ -96,7 +101,7 @@ app.UseExceptionHandler();
 
 // i18n: Enable request localization middleware (must be before endpoints)
 app.UseRequestLocalization();
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // Enable after configuring HTTPS (Kestrel cert or reverse proxy)
 
 // Carter: map all module endpoints
 app.MapCarter();
