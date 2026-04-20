@@ -1,31 +1,30 @@
 # Order Management API
 
-API modular em .NET 8 com arquitetura de módulos (Catalog, Basket, Orders), utilizando PostgreSQL, RabbitMQ, MediatR, FluentValidation, Carter, MassTransit e internacionalização (i18n) com suporte a 33 idiomas.
+A modular .NET 8 API with a module-based architecture (Catalog, Basket, Orders), using PostgreSQL, RabbitMQ, MediatR, FluentValidation, Carter, MassTransit, and internationalization (i18n) with support for 33 languages.
 
 ---
 
-## Sumário
+## Table of Contents
 
-- [Pré-requisitos](#pré-requisitos)
-- [Execução local](#execução-local)
-- [Deploy na AWS EC2 Free Tier (Windows + RDP)](#deploy-na-aws-ec2-free-tier-windows--rdp)
-  - [1. Criar a instância EC2](#1-criar-a-instância-ec2)
-  - [2. Conectar via RDP](#2-conectar-via-rdp)
-  - [3. Instalar Docker na EC2](#3-instalar-docker-na-ec2)
-  - [4. Clonar o projeto](#4-clonar-o-projeto)
-  - [5. Subir a aplicação](#5-subir-a-aplicação)
-  - [6. Liberar portas no Security Group](#6-liberar-portas-no-security-group)
-  - [7. Validar o deploy](#7-validar-o-deploy)
+- [Prerequisites](#prerequisites)
+- [Running Locally](#running-locally)
+- [Deploy on AWS EC2 Free Tier (Windows + RDP)](#deploy-on-aws-ec2-free-tier-windows--rdp)
+  - [1. Create the EC2 Instance](#1-create-the-ec2-instance)
+  - [2. Connect via RDP](#2-connect-via-rdp)
+  - [3. Install Docker on EC2](#3-install-docker-on-ec2)
+  - [4. Clone the Project](#4-clone-the-project)
+  - [5. Start the Application](#5-start-the-application)
+  - [6. Open Ports in the Security Group](#6-open-ports-in-the-security-group)
+  - [7. Validate the Deployment](#7-validate-the-deployment)
 - [Endpoints](#endpoints)
-- [Internacionalização (i18n)](#internacionalização-i18n)
-- [Estimativa de custos AWS](#estimativa-de-custos-aws)
-- [Observações](#observações)
+- [Internationalization (i18n)](#internationalization-i18n)
+- [AWS Cost Estimate](#aws-cost-estimate)
 
 ---
 
-## Pré-requisitos
+## Prerequisites
 
-| Ferramenta | Versão mínima |
+| Tool | Minimum Version |
 |---|---|
 | [.NET SDK](https://dotnet.microsoft.com/download/dotnet/8.0) | 8.0 |
 | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | 24+ |
@@ -33,106 +32,106 @@ API modular em .NET 8 com arquitetura de módulos (Catalog, Basket, Orders), uti
 
 ---
 
-## Execução local
+## Running Locally
 
 ```bash
-# 1. Clonar o repositório
-git clone <url-do-repositorio>
+# 1. Clone the repository
+git clone <repository-url>
 cd OrderManagementApi
 
-# 2. Subir tudo com Docker Compose (API + PostgreSQL + RabbitMQ)
+# 2. Start everything with Docker Compose (API + PostgreSQL + RabbitMQ)
 docker-compose up -d --build
 
-# 3. Verificar se está rodando
+# 3. Check if it's running
 docker-compose ps
 
-# 4. Testar
+# 4. Test
 curl http://localhost:5000/swagger
 ```
 
-| Serviço | URL |
+| Service | URL |
 |---|---|
 | API | http://localhost:5000 |
 | Swagger | http://localhost:5000/swagger |
 | RabbitMQ Management | http://localhost:15672 (guest/guest) |
 | PostgreSQL | localhost:5432 (postgres/postgres) |
 
-Para parar:
+To stop:
 ```bash
 docker-compose down
 ```
 
-Para parar e **apagar dados**:
+To stop and **delete all data**:
 ```bash
 docker-compose down -v
 ```
 
 ---
 
-## Deploy na AWS EC2 Free Tier (Windows + RDP)
+## Deploy on AWS EC2 Free Tier (Windows + RDP)
 
-### 1. Criar a instância EC2
+### 1. Create the EC2 Instance
 
-1. Acesse o [Console AWS](https://console.aws.amazon.com/ec2/)
-2. Clique em **Launch Instance**
+1. Go to the [AWS Console](https://console.aws.amazon.com/ec2/)
+2. Click **Launch Instance**
 3. Configure:
 
-| Campo | Valor |
+| Field | Value |
 |---|---|
 | **Name** | `OrderManagementApi` |
 | **AMI** | `Microsoft Windows Server 2022 Base` (Free tier eligible) |
 | **Instance type** | `t2.micro` (Free tier — 1 vCPU, 1 GB RAM) |
-| **Key pair** | Crie um novo → `ordermanagement-key` → **Download .pem** |
-| **Storage** | **30 GB** gp3 (máximo do free tier) |
+| **Key pair** | Create a new one → `ordermanagement-key` → **Download .pem** |
+| **Storage** | **30 GB** gp3 (free tier maximum) |
 
-4. Em **Network settings**, crie um Security Group com as regras:
+4. Under **Network settings**, create a Security Group with the following rules:
 
-| Tipo | Porta | Origem | Descrição |
+| Type | Port | Source | Description |
 |---|---|---|---|
-| RDP | 3389 | Meu IP | Acesso RDP |
+| RDP | 3389 | My IP | RDP access |
 | Custom TCP | 5000 | 0.0.0.0/0 | API |
-| Custom TCP | 15672 | Meu IP | RabbitMQ UI |
+| Custom TCP | 15672 | My IP | RabbitMQ UI |
 
-5. Clique **Launch Instance**
+5. Click **Launch Instance**
 
-> **Nota:** O `t2.micro` possui apenas 1 GB de RAM. O build do Docker pode falhar por falta de memória. Nesse caso, considere `t2.small` (2 GB) ou `t3.small` — fora do free tier, custam aproximadamente $0.02/hora (~$15/mês).
+> **Note:** `t2.micro` has only 1 GB of RAM. The Docker build may fail due to insufficient memory. In that case, consider `t2.small` (2 GB) or `t3.small` — outside the free tier, costing approximately $0.02/hour (~$15/month).
 
 ---
 
-### 2. Conectar via RDP
+### 2. Connect via RDP
 
-1. No console EC2, selecione a instância → **Connect** → aba **RDP client**
-2. Clique em **Get password** → faça upload do arquivo `.pem` → **Decrypt password**
-3. Anote o **Public DNS**, **Username** (`Administrator`) e **Password**
-4. No seu computador, abra **Remote Desktop Connection** (`mstsc`):
-   - **Computer:** `<Public-DNS-da-instância>`
+1. In the EC2 console, select the instance → **Connect** → **RDP client** tab
+2. Click **Get password** → upload the `.pem` file → **Decrypt password**
+3. Note the **Public DNS**, **Username** (`Administrator`) and **Password**
+4. On your machine, open **Remote Desktop Connection** (`mstsc`):
+   - **Computer:** `<instance-Public-DNS>`
    - **Username:** `Administrator`
-   - **Password:** a senha decriptada
+   - **Password:** the decrypted password
 
 ---
 
-### 3. Instalar Docker na EC2
+### 3. Install Docker on EC2
 
-Dentro da instância via RDP, abra o **PowerShell como Administrador** e execute:
+Inside the instance via RDP, open **PowerShell as Administrator** and run:
 
 ```powershell
-# ─── Opção A: Docker Desktop (mais fácil, usa mais RAM) ───
+# ─── Option A: Docker Desktop (easier, uses more RAM) ───
 
-# Baixar e instalar Docker Desktop
+# Download and install Docker Desktop
 Invoke-WebRequest -Uri "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe" -OutFile "$env:TEMP\DockerDesktopInstaller.exe"
 Start-Process -Wait -FilePath "$env:TEMP\DockerDesktopInstaller.exe" -ArgumentList "install","--quiet","--accept-license"
 
-# Reiniciar a máquina (obrigatório)
+# Restart the machine (required)
 Restart-Computer -Force
 ```
 
-Após reiniciar, reconecte via RDP e verifique:
+After restarting, reconnect via RDP and verify:
 ```powershell
 docker --version
 docker-compose --version
 ```
 
-> **Alternativa recomendada para t2.micro:** Utilizar uma AMI Amazon Linux 2023 em vez de Windows, pois consome significativamente menos RAM:
+> **Recommended alternative for t2.micro:** Use an Amazon Linux 2023 AMI instead of Windows, as it consumes significantly less RAM:
 > ```bash
 > sudo yum install -y docker
 > sudo systemctl start docker
@@ -144,38 +143,38 @@ docker-compose --version
 
 ---
 
-### 4. Clonar o projeto
+### 4. Clone the Project
 
 ```powershell
-# Instalar Git (se não tiver)
+# Install Git (if not already installed)
 winget install --id Git.Git -e --source winget
 
-# Clonar o repositório
+# Clone the repository
 cd C:\
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd OrderManagementApi
 ```
 
-Alternativamente, copie os arquivos via RDP (arrastar e soltar ou pasta compartilhada).
+Alternatively, copy the files via RDP (drag and drop or shared folder).
 
 ---
 
-### 5. Subir a aplicação
+### 5. Start the Application
 
 ```powershell
 cd C:\OrderManagementApi
 
-# Build e start de todos os containers
+# Build and start all containers
 docker-compose up -d --build
 
-# Acompanhar os logs
+# Follow the logs
 docker-compose logs -f api
 
-# Verificar status
+# Check status
 docker-compose ps
 ```
 
-Resultado esperado:
+Expected output:
 ```
 NAME                      STATUS
 orderdb                   running   0.0.0.0:5432->5432
@@ -183,22 +182,22 @@ messagebroker             running   0.0.0.0:5672->5672, 0.0.0.0:15672->15672
 ordermanagement-api       running   0.0.0.0:5000->8080
 ```
 
-> **Se o build falhar por falta de memória**, aumente a memória virtual:
+> **If the build fails due to insufficient memory**, increase virtual memory:
 > ```powershell
-> # No Windows, aumente o virtual memory:
+> # On Windows, increase virtual memory:
 > # System Properties → Advanced → Performance Settings → Advanced → Virtual Memory → Change
 > # Set custom size: Initial 2048 MB, Maximum 4096 MB
 > ```
 
 ---
 
-### 6. Liberar portas no Security Group
+### 6. Open Ports in the Security Group
 
-Se não fez no Passo 1, vá ao console AWS:
+If you did not do this in Step 1, go to the AWS console:
 
-1. **EC2** → **Instances** → selecione a instância
-2. Aba **Security** → clique no **Security Group**
-3. **Edit inbound rules** → adicione:
+1. **EC2** → **Instances** → select the instance
+2. **Security** tab → click the **Security Group**
+3. **Edit inbound rules** → add:
 
 | Type | Port | Source |
 |---|---|---|
@@ -207,7 +206,7 @@ Se não fez no Passo 1, vá ao console AWS:
 
 4. **Save rules**
 
-Também libere no **Windows Firewall** dentro da EC2:
+Also open the ports in the **Windows Firewall** inside the EC2:
 ```powershell
 New-NetFirewallRule -DisplayName "API Port 5000" -Direction Inbound -Port 5000 -Protocol TCP -Action Allow
 New-NetFirewallRule -DisplayName "RabbitMQ UI" -Direction Inbound -Port 15672 -Protocol TCP -Action Allow
@@ -215,15 +214,15 @@ New-NetFirewallRule -DisplayName "RabbitMQ UI" -Direction Inbound -Port 15672 -P
 
 ---
 
-### 7. Validar o deploy
+### 7. Validate the Deployment
 
-Substitua `<EC2-PUBLIC-IP>` pelo IP público da instância (visível no console EC2):
+Replace `<EC2-PUBLIC-IP>` with the public IP of the instance (visible in the EC2 console):
 
 ```bash
 # Swagger
 http://<EC2-PUBLIC-IP>:5000/swagger
 
-# Testar endpoint com i18n
+# Test endpoint with i18n
 curl -X GET http://<EC2-PUBLIC-IP>:5000/api/products \
   -H "Accept-Language: ja"
 
@@ -235,66 +234,66 @@ http://<EC2-PUBLIC-IP>:15672  (guest/guest)
 
 ## Endpoints
 
-| Método | Rota | Descrição |
+| Method | Route | Description |
 |---|---|---|
-| `GET` | `/api/products` | Listar produtos |
-| `GET` | `/api/products/{id}` | Buscar produto por ID |
-| `POST` | `/api/products` | Criar produto |
-| `PUT` | `/api/products/{id}` | Atualizar produto |
-| `DELETE` | `/api/products/{id}` | Deletar produto |
+| `GET` | `/api/products` | List products |
+| `GET` | `/api/products/{id}` | Get product by ID |
+| `POST` | `/api/products` | Create product |
+| `PUT` | `/api/products/{id}` | Update product |
+| `DELETE` | `/api/products/{id}` | Delete product |
 
 ---
 
-## Internacionalização (i18n)
+## Internationalization (i18n)
 
-A API suporta 33 idiomas via header `Accept-Language`. Se o idioma solicitado não possuir tradução, o fallback é `en-US`.
+The API supports 33 languages via the `Accept-Language` header. If the requested language has no translation, it falls back to `en-US`.
 
-| Idioma | Código | Idioma | Código |
+| Language | Code | Language | Code |
 |---|---|---|---|
-| English (padrão) | `en-US` | Polski | `pl` |
-| Português (Brasil) | `pt-BR` | Nederlands | `nl` |
-| Español | `es` | Svenska | `sv` |
-| Français | `fr` | Dansk | `da` |
-| 日本語 | `ja` | Norsk | `no` |
-| 简体中文 | `zh-CN` | Suomi | `fi` |
-| 繁體中文 | `zh-TW` | Čeština | `cs` |
-| 한국어 | `ko` | Magyar | `hu` |
-| Deutsch | `de` | Română | `ro` |
-| Italiano | `it` | Български | `bg` |
-| Русский | `ru` | Ελληνικά | `el` |
-| العربية | `ar` | Türkçe | `tr` |
-| हिन्दी | `hi` | ไทย | `th` |
-| Tiếng Việt | `vi` | Bahasa Indonesia | `id` |
-| Bahasa Melayu | `ms` | Українська | `uk` |
-| Slovenčina | `sk` | Hrvatski | `hr` |
-| Српски | `sr` | Slovenščina | `sl` |
-| Lietuvių | `lt` | Latviešu | `lv` |
-| Eesti | `et` | עברית | `he` |
-| فارسی | `fa` | বাংলা | `bn` |
-| Kiswahili | `sw` | Català | `ca` |
-| Euskara | `eu` | | |
+| English (default) | `en-US` | Polish | `pl` |
+| Portuguese (Brazil) | `pt-BR` | Dutch | `nl` |
+| Spanish | `es` | Swedish | `sv` |
+| French | `fr` | Danish | `da` |
+| Japanese | `ja` | Norwegian | `no` |
+| Chinese Simplified | `zh-CN` | Finnish | `fi` |
+| Chinese Traditional | `zh-TW` | Czech | `cs` |
+| Korean | `ko` | Hungarian | `hu` |
+| German | `de` | Romanian | `ro` |
+| Italian | `it` | Bulgarian | `bg` |
+| Russian | `ru` | Greek | `el` |
+| Arabic | `ar` | Turkish | `tr` |
+| Hindi | `hi` | Thai | `th` |
+| Vietnamese | `vi` | Indonesian | `id` |
+| Malay | `ms` | Ukrainian | `uk` |
+| Slovak | `sk` | Croatian | `hr` |
+| Serbian | `sr` | Slovenian | `sl` |
+| Lithuanian | `lt` | Latvian | `lv` |
+| Estonian | `et` | Hebrew | `he` |
+| Persian | `fa` | Bengali | `bn` |
+| Swahili | `sw` | Catalan | `ca` |
+| Basque | `eu` | | |
 
-Exemplo de requisição com idioma japonês:
+Example request with Japanese:
 ```bash
 curl -X PUT http://localhost:5000/api/products/{id} \
   -H "Content-Type: application/json" \
   -H "Accept-Language: ja" \
   -d '{"name":"","description":"Test","price":-1}'
 
-# Resposta em japonês:
+# Response in Japanese:
 # { "title": "Validation.Failed", "status": 400, "detail": "製品名は必須です。; 製品価格はゼロより大きくなければなりません。" }
 ```
 
 ---
 
-## Estimativa de custos AWS
+## AWS Cost Estimate
 
-| Recurso | Free Tier | Após 12 meses |
+| Resource | Free Tier | After 12 months |
 |---|---|---|
-| EC2 t2.micro | **750h/mês grátis** (12 meses) | ~$8.50/mês |
-| EBS 30 GB gp3 | **30 GB grátis** (12 meses) | ~$2.40/mês |
-| Data transfer | **100 GB/mês grátis** | $0.09/GB |
-| **Total** | **$0.00** | **~$11/mês** |
+| EC2 t2.micro | **750h/month free** (12 months) | ~$8.50/month |
+| EBS 30 GB gp3 | **30 GB free** (12 months) | ~$2.40/month |
+| Data transfer | **100 GB/month free** | $0.09/GB |
+| **Total** | **$0.00** | **~$11/month** |
 
 ---
 
